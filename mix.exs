@@ -14,7 +14,7 @@ defmodule Zarex.Mixfile do
     [applications: [:logger]]
   end
 
-  defp description
+  defp description do
     "Filename sanitization for Elixir"
   end
 
