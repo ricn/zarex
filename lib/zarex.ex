@@ -11,6 +11,7 @@ defmodule Zarex do
     use whatever alphabets they want to. Zarex also doesn't remove whitespace—instead,
     any sequence of whitespace that is 1 or more characters in length is collapsed to a
     single space. Filenames are truncated so that they are at maximum 255 characters long.
+
     ## Examples
 
       iex(1)> Zarex.sanitize("  what\ēver//wëird:user:înput:")
