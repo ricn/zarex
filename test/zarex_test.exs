@@ -14,4 +14,16 @@ defmodule ZarexTest do
     assert String.length(Zarex.sanitize(name)) == 255
     assert String.length(Zarex.sanitize(name, 10)) == 245
   end
+
+  test "sanitization" do
+    assert "abcdef" == Zarex.sanitize("abcdef")
+    assert "笊, ざる.pdf" == Zarex.sanitize("笊, ざる.pdf")
+    assert "whatēverwëirduserînput" == Zarex.sanitize("  what\\ēver//wëird:user:înput:")
+    Enum.each(["<", ">", "|", "/", "\\", "*", "?", ":"], fn(char) ->
+      assert "file" == Zarex.sanitize(char)
+      assert "a" == Zarex.sanitize("a#{char}")
+      assert "a" == Zarex.sanitize("#{char}a")
+      assert "aa" == Zarex.sanitize("a#{char}a")
+    end)
+  end
 end
