@@ -13,7 +13,7 @@ Filename sanitization for Elixir. This is useful when you generate filenames for
 Add this to your `mix.exs` file, then run `mix do deps.get, deps.compile`:
 
 ```elixir
-  {:zarex, "~> 1.0"}
+  {:zarex, "~> 0.1"}
 ```
 
 ## Examples
