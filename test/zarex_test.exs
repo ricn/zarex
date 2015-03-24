@@ -35,4 +35,14 @@ defmodule ZarexTest do
     assert "file" == Zarex.sanitize(" LpT\x122")
     assert "COM10" == Zarex.sanitize("COM10")
   end
+
+  test "blanks" do
+    assert "file" == Zarex.sanitize("<")
+  end
+
+  test "dots" do
+    assert "file.pdf" == Zarex.sanitize(".pdf")
+    assert "file.pdf" == Zarex.sanitize("<.pdf")
+    assert "file..pdf" == Zarex.sanitize("..pdf")
+  end
 end
