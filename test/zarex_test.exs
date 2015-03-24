@@ -26,4 +26,13 @@ defmodule ZarexTest do
       assert "aa" == Zarex.sanitize("a#{char}a")
     end)
   end
+
+  test "windows reserved names" do
+    assert "file" == Zarex.sanitize("CON")
+    assert "file" == Zarex.sanitize("lpt1 ")
+    assert "file" == Zarex.sanitize("com4")
+    assert "file" == Zarex.sanitize(" aux")
+    assert "file" == Zarex.sanitize(" LpT\x122")
+    assert "COM10" == Zarex.sanitize("COM10")
+  end
 end
