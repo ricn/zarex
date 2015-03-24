@@ -37,9 +37,10 @@ Zarex.sanitize(String.duplicate("a", 400), 10)
 
 ## Credits
 
-The following people have contributed ideas, documentation, or code to Librex:
+The following people have contributed ideas, documentation, or code to Zarex:
 
 * Richard Nyström
+* Thomas Fuchs (the creator of Zaru, the Ruby library Zarex is heavily based on)
 
 ## Contributing
 
