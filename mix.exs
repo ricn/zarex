@@ -3,7 +3,7 @@ defmodule Zarex.Mixfile do
 
   def project do
     [app: :zarex,
-     version: "0.1.0",
+     version: "0.2.0",
      elixir: "~> 1.0",
      description: description,
      package: package,
