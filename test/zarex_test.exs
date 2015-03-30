@@ -12,7 +12,7 @@ defmodule ZarexTest do
   test "truncation" do
     name = String.duplicate("A", 400)
     assert String.length(Zarex.sanitize(name)) == 255
-    assert String.length(Zarex.sanitize(name, 10)) == 245
+    assert String.length(Zarex.sanitize(name, padding: 10)) == 245
   end
 
   test "sanitization" do

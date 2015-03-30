@@ -25,7 +25,8 @@ defmodule Zarex do
     If extra breathing room is required (for example to add your own filename
     extension later), you can leave extra room with the padding parameter
   """
-  def sanitize(name, padding \\ 0) do
+  def sanitize(name, opts \\ [padding: 0]) do
+    padding = Keyword.fetch!(opts, :padding)
     String.strip(name)
     |> String.replace(~r/[[:space:]]+/u, " ") #normalize
     |> String.slice(0, 255 - padding) #padding
@@ -34,6 +35,8 @@ defmodule Zarex do
     |> filter_dots
     |> filename_fallback
   end
+
+
 
   defp filename_fallback(name) do
     if String.length(name) == 0, do: @fallback_filename, else: name

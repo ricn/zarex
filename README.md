@@ -30,7 +30,7 @@ It deletes the bad stuff and leaves unicode characters in place, so users can us
 If extra space is required (for example to add your own filename extension later), you can leave extra padding:
 
 ```elixir
-Zarex.sanitize(String.duplicate("a", 400), 10)
+Zarex.sanitize(String.duplicate("a", 400), padding: 10)
 # returns a string with 245 chars. First the binary of 400 chars will be truncated
 # to 255 chars and then the extra padding of 10 will truncate the binary to 245 chars.
 ```
