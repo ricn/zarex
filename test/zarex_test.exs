@@ -45,4 +45,9 @@ defmodule ZarexTest do
     assert "file.pdf" == Zarex.sanitize("<.pdf")
     assert "file..pdf" == Zarex.sanitize("..pdf")
   end
+
+  test "filename fallback" do
+    assert "file" == Zarex.sanitize("")
+    assert "document.pdf" == Zarex.sanitize("", filename_fallback: "document.pdf")
+  end
 end

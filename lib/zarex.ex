@@ -1,6 +1,4 @@
 defmodule Zarex do
-  @fallback_filename "file"
-
   @moduledoc """
     Filename sanitization for Elixir. This is useful when you generate filenames
     for downloads from user input.
@@ -25,30 +23,29 @@ defmodule Zarex do
     If extra breathing room is required (for example to add your own filename
     extension later), you can leave extra room with the padding parameter
   """
-  def sanitize(name, opts \\ [padding: 0]) do
-    padding = Keyword.fetch!(opts, :padding)
+  def sanitize(name, opts \\ []) do
+    padding = Keyword.get(opts, :padding, 0)
+    filename_fallback = Keyword.get(opts, :filename_fallback, "file")
     String.strip(name)
     |> String.replace(~r/[[:space:]]+/u, " ") #normalize
     |> String.slice(0, 255 - padding) #padding
     |> String.replace(~r/[\x00-\x1F\/\\:\*\?\"<>\|]/u, "") #sanitize
-    |> filter_windows_reserved_names
-    |> filter_dots
-    |> filename_fallback
+    |> filter_windows_reserved_names(filename_fallback)
+    |> filter_dots(filename_fallback)
+    |> filename_fallback(filename_fallback)
   end
 
-
-
-  defp filename_fallback(name) do
-    if String.length(name) == 0, do: @fallback_filename, else: name
+  defp filename_fallback(name, fallback) do
+    if String.length(name) == 0, do: fallback, else: name
   end
 
-  defp filter_windows_reserved_names(name) do
+  defp filter_windows_reserved_names(name, fallback) do
     wrn = ~w(CON PRN AUX NUL COM1 COM2 COM3 COM4 COM5 COM6 COM7 COM8 COM9 LPT1
     LPT2 LPT3 LPT4 LPT5 LPT6 LPT7 LPT8 LPT9)
-    if Enum.member?(wrn, String.upcase(name)), do: @fallback_filename, else: name
+    if Enum.member?(wrn, String.upcase(name)), do: fallback, else: name
   end
 
-  defp filter_dots(name) do
-    if String.starts_with?(name, "."), do: "#{@fallback_filename}#{name}", else: name
+  defp filter_dots(name, fallback) do
+    if String.starts_with?(name, "."), do: "#{fallback}#{name}", else: name
   end
 end
