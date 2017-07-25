@@ -26,7 +26,7 @@ defmodule Zarex do
   def sanitize(name, opts \\ []) do
     padding = Keyword.get(opts, :padding, 0)
     filename_fallback = Keyword.get(opts, :filename_fallback, "file")
-    String.strip(name)
+    String.trim(name)
     |> String.replace(~r/[[:space:]]+/u, " ") #normalize
     |> String.slice(0, 255 - padding) #padding
     |> String.replace(~r/[\x00-\x1F\/\\:\*\?\"<>\|]/u, "") #sanitize
