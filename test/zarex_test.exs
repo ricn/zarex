@@ -6,7 +6,7 @@ defmodule ZarexTest do
       assert Zarex.sanitize(name) == "a"
     end)
 
-    Enum.each(["x x", "x  x", "x   x", "x\tx", "x\r\nx"], fn name ->
+    Enum.each(["x x", "x  x", "x   x", "x  |  x", "x\tx", "x\r\nx"], fn name ->
       assert Zarex.sanitize(name) == "x x"
     end)
   end

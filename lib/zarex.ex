@@ -26,13 +26,12 @@ defmodule Zarex do
   def sanitize(name, opts \\ []) do
     padding = Keyword.get(opts, :padding, 0)
     filename_fallback = Keyword.get(opts, :filename_fallback, "file")
-    # normalize
-    # padding
-    # sanitize
+
     String.trim(name)
     |> String.replace(~r/[[:space:]]+/u, " ")
     |> String.slice(0, 255 - padding)
     |> String.replace(~r/[\x00-\x1F\/\\:\*\?\"<>\|]/u, "")
+    |> String.replace(~r/[[:space:]]+/u, " ")
     |> filter_windows_reserved_names(filename_fallback)
     |> filter_dots(filename_fallback)
     |> filename_fallback(filename_fallback)
