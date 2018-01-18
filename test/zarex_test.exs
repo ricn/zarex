@@ -2,11 +2,13 @@ defmodule ZarexTest do
   use ExUnit.Case
 
   test "normalization" do
-    Enum.each(["a", " a", "a ", " a ", "a    \n"],
-    fn(name) -> assert Zarex.sanitize(name) == "a" end)
+    Enum.each(["a", " a", "a ", " a ", "a    \n"], fn name ->
+      assert Zarex.sanitize(name) == "a"
+    end)
 
-    Enum.each(["x x", "x  x", "x   x", "x\tx", "x\r\nx"],
-    fn(name) -> assert Zarex.sanitize(name) == "x x" end)
+    Enum.each(["x x", "x  x", "x   x", "x\tx", "x\r\nx"], fn name ->
+      assert Zarex.sanitize(name) == "x x"
+    end)
   end
 
   test "truncation" do
@@ -19,7 +21,8 @@ defmodule ZarexTest do
     assert "abcdef" == Zarex.sanitize("abcdef")
     assert "笊, ざる.pdf" == Zarex.sanitize("笊, ざる.pdf")
     assert "whatēverwëirduserînput" == Zarex.sanitize("  what\\ēver//wëird:user:înput:")
-    Enum.each(["<", ">", "|", "/", "\\", "*", "?", ":"], fn(char) ->
+
+    Enum.each(["<", ">", "|", "/", "\\", "*", "?", ":"], fn char ->
       assert "file" == Zarex.sanitize(char)
       assert "a" == Zarex.sanitize("a#{char}")
       assert "a" == Zarex.sanitize("#{char}a")
