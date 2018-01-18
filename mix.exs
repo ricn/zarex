@@ -32,6 +32,7 @@ defmodule Zarex.Mixfile do
     [
       files: ["lib", "mix.exs", "README*", "LICENSE*"],
       contributors: ["Richard Nyström"],
+      maintainers: ["Richard Nyström"],
       licenses: ["MIT"],
       links: %{"GitHub" => "https://github.com/ricn/zarex", "Docs" => "http://hexdocs.pm/zarex"}
     ]
