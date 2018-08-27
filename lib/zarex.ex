@@ -23,7 +23,7 @@ defmodule Zarex do
     If extra breathing room is required (for example to add your own filename
     extension later), you can leave extra room with the padding parameter
   """
-  def sanitize(name, opts \\ []) do
+  def sanitize(name, opts \\ []) when is_binary(name) and is_list(opts) do
     padding = Keyword.get(opts, :padding, 0)
     filename_fallback = Keyword.get(opts, :filename_fallback, "file")
 
