@@ -5,7 +5,7 @@ defmodule Zarex.Mixfile do
     [
       app: :zarex,
       version: "0.5.0",
-      elixir: "~> 1.0",
+      elixir: "~> 1.6",
       description: description(),
       package: package(),
       deps: deps()
