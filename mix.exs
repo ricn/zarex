@@ -22,8 +22,8 @@ defmodule Zarex.Mixfile do
 
   defp deps do
     [
-      {:inch_ex, "~> 1.0", only: :docs},
-      {:earmark, "~> 1.2", only: :dev},
+      {:inch_ex, "~> 2.0", only: :docs},
+      {:earmark, "~> 1.3", only: :dev},
       {:ex_doc, "~> 0.19", only: :dev}
     ]
   end
