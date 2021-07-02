@@ -1,8 +1,8 @@
 language: elixir
 otp_release:
-  - 22.0
+  - 24.0
 elixir:
-  - 1.10.2
+  - 1.12.0
 notifications:
   recipients:
     - ricn@rny.io
