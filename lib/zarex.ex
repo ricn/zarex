@@ -1,21 +1,24 @@
 defmodule Zarex do
   @moduledoc """
-    Filename sanitization for Elixir. This is useful when you generate filenames
-    for downloads from user input.
+  Filename sanitization for Elixir. This is useful when you generate filenames for downloads from user input.
 
-    Zarex takes a given filename and normalizes, filters and truncates it.
+  Zarex takes a given filename and normalizes, filters and truncates it.
 
-    It deletes the bad stuff but leaves unicode characters in place, so users can
-    use whatever alphabets they want to. Zarex also doesn't remove whitespace—instead,
-    any sequence of whitespace that is 1 or more characters in length is collapsed to a
-    single space. Filenames are truncated so that they are at maximum 255 characters long.
+  It deletes the bad stuff but leaves unicode characters in place, so users can
+  use whatever alphabets they want to. Zarex also doesn't remove whitespace—instead,
+  any sequence of whitespace that is 1 or more characters in length is collapsed to a
+  single space. Filenames are truncated so that they are at maximum 255 characters long.
 
-    ## Examples
+  ### Examples
 
-      iex(1)> Zarex.sanitize("  what\ēver//wëird:user:înput:")
-
+      iex> Zarex.sanitize("  what\ēver//wëird:user:înput:")
       "whatēverwëirduserînput"
+
+      iex> Zarex.sanitize("<", filename_fallback: "file")
+      "file"
+
   """
+
   @type options :: {:padding, pos_integer()} | {:filename_fallback, String.t()}
   @spec sanitize(String.t(), [options]) :: String.t()
   @doc """

@@ -1,5 +1,6 @@
 defmodule ZarexTest do
-  use ExUnit.Case
+  use ExUnit.Case, async: true
+  doctest Zarex
 
   test "normalization" do
     Enum.each(["a", " a", "a ", " a ", "a    \n"], fn name ->
