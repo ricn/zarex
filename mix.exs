@@ -8,7 +8,8 @@ defmodule Zarex.Mixfile do
       elixir: "~> 1.6",
       description: description(),
       package: package(),
-      deps: deps()
+      deps: deps(),
+      docs: docs()
     ]
   end
 
@@ -37,5 +38,9 @@ defmodule Zarex.Mixfile do
       licenses: ["MIT"],
       links: %{"GitHub" => "https://github.com/ricn/zarex", "Docs" => "http://hexdocs.pm/zarex"}
     ]
+  end
+
+  defp docs do
+    [extras: ["README.md"], main: "readme"]
   end
 end
