@@ -16,16 +16,17 @@ defmodule Zarex do
 
       "whatēverwëirduserînput"
   """
-
+  @type options :: {:padding, pos_integer()} | {:filename_fallback, String.t()}
+  @spec sanitize(String.t(), [options]) :: String.t()
   @doc """
     Takes a given filename and normalizes, filters and truncates it.
 
     If extra breathing room is required (for example to add your own filename
     extension later), you can leave extra room with the padding parameter
   """
-  def sanitize(name, opts \\ []) when is_binary(name) and is_list(opts) do
-    padding = Keyword.get(opts, :padding, 0)
-    filename_fallback = Keyword.get(opts, :filename_fallback, "file")
+  def sanitize(name, options \\ []) when is_binary(name) and is_list(options) do
+    padding = Keyword.get(options, :padding, 0)
+    filename_fallback = Keyword.get(options, :filename_fallback, "file")
 
     String.trim(name)
     |> String.replace(~r/[[:space:]]+/u, " ")
