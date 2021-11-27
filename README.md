@@ -1,7 +1,7 @@
 Zarex
 =====
 
-[![Build Status](https://travis-ci.org/ricn/zarex.png?branch=master)](https://travis-ci.org/ricn/zarex)
+[![Tests](https://github.com/ricn/zarex/actions/workflows/elixir.yml/badge.svg)](https://github.com/ricn/zarex/actions/workflows/elixir.yml)
 [![Hex.pm](https://img.shields.io/hexpm/v/zarex.svg)](https://hex.pm/packages/zarex)
 [![Inline docs](http://inch-ci.org/github/ricn/zarex.svg?branch=master)](http://inch-ci.org/github/ricn/zarex)
 
