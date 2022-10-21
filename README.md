@@ -3,7 +3,6 @@ Zarex
 
 [![Elixir CI](https://github.com/ricn/zarex/actions/workflows/elixir.yml/badge.svg)](https://github.com/ricn/zarex/actions/workflows/elixir.yml)
 [![Hex.pm](https://img.shields.io/hexpm/v/zarex.svg)](https://hex.pm/packages/zarex)
-[![Inline docs](http://inch-ci.org/github/ricn/zarex.svg?branch=master)](http://inch-ci.org/github/ricn/zarex)
 
 Filename sanitization for Elixir. This is useful when you generate filenames for downloads from user input. The library is heavily inspired by
 [Zaru](https://github.com/madrobby/zaru) which does the same thing but in Ruby.
