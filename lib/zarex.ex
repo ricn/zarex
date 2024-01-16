@@ -7,7 +7,7 @@ defmodule Zarex do
   It deletes the bad stuff but leaves unicode characters in place, so users can
   use whatever alphabets they want to. Zarex also doesn't remove whitespace—instead,
   any sequence of whitespace that is 1 or more characters in length is collapsed to a
-  single space. Filenames are truncated so that they are at maximum 255 characters long.
+  single space. Filenames are truncated so that they are at maximum 255 bytes long.
 
   ### Examples
 
@@ -33,7 +33,7 @@ defmodule Zarex do
 
     String.trim(name)
     |> String.replace(~r/[[:space:]]+/u, " ")
-    |> String.slice(0, 255 - padding)
+    |> byte_aware_take(255 - padding)
     |> String.replace(~r/[\x00-\x1F\/\\:\*\?\"<>\|]/u, "")
     |> String.replace(~r/[[:space:]]+/u, " ")
     |> filter_windows_reserved_names(filename_fallback)
@@ -53,5 +53,27 @@ defmodule Zarex do
 
   defp filter_dots(name, fallback) do
     if String.starts_with?(name, "."), do: "#{fallback}#{name}", else: name
+  end
+
+  defp byte_aware_take(string, limit) do
+    by_character = String.slice(string, 0, limit)
+
+    if byte_size(by_character) <= limit do
+      by_character
+    else
+      by_character
+      |> String.graphemes()
+      |> Enum.reduce_while({0, []}, fn grapheme, {bytes, acc} ->
+        bytes = bytes + byte_size(grapheme)
+
+        if bytes <= limit do
+          {:cont, {bytes, [grapheme | acc]}}
+        else
+          result = acc |> Enum.reverse() |> Enum.join()
+
+          {:halt, result}
+        end
+      end)
+    end
   end
 end
