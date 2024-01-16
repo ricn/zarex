@@ -14,7 +14,7 @@ defmodule Zarex.Mixfile do
   end
 
   def application do
-    [applications: [:logger]]
+    [extra_applications: [:logger]]
   end
 
   defp description do
@@ -26,7 +26,7 @@ defmodule Zarex.Mixfile do
       {:inch_ex, "2.0.0", only: :docs},
       {:earmark, "1.4.46", only: :dev},
       {:ex_doc, "0.31.1", only: :dev, runtime: false},
-      {:dialyxir, "1.4.3", only: [:dev], runtime: false}
+      {:dialyxir, "1.4.3", only: :dev, runtime: false}
     ]
   end
 
