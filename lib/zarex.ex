@@ -30,15 +30,17 @@ defmodule Zarex do
   def sanitize(name, options \\ []) when is_binary(name) and is_list(options) do
     padding = Keyword.get(options, :padding, 0)
     filename_fallback = Keyword.get(options, :filename_fallback, "file")
+    limit = 255 - padding
 
     String.trim(name)
     |> String.replace(~r/[[:space:]]+/u, " ")
-    |> byte_aware_take(255 - padding)
+    |> byte_aware_take(limit)
     |> String.replace(~r/[\x00-\x1F\/\\:\*\?\"<>\|]/u, "")
     |> String.replace(~r/[[:space:]]+/u, " ")
     |> filter_windows_reserved_names(filename_fallback)
     |> filter_dots(filename_fallback)
     |> filename_fallback(filename_fallback)
+    |> byte_aware_take(limit)
   end
 
   defp filename_fallback(name, fallback) do

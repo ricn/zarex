@@ -24,9 +24,9 @@ defmodule Zarex.Mixfile do
   defp deps do
     [
       {:inch_ex, "2.0.0", only: :docs},
-      {:earmark, "1.4.46", only: :dev},
-      {:ex_doc, "0.31.1", only: :dev, runtime: false},
-      {:dialyxir, "1.4.3", only: :dev, runtime: false}
+      {:earmark, "1.4.48", only: :dev},
+      {:ex_doc, "0.38.4", only: :dev, runtime: false},
+      {:dialyxir, "1.4.6", only: :dev, runtime: false}
     ]
   end
 
