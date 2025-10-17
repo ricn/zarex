@@ -68,14 +68,14 @@ defmodule ZarexTest do
   test "sanitize respects 255 byte limit even with leading dots" do
     # Create a string with 254 dots + "b" = 255 bytes (within limit)
     within_limit = String.duplicate(".", 254) <> "b"
-    
+
     # Sanitize with fallback - should not exceed 255 bytes
     sanitized = Zarex.sanitize(within_limit, filename_fallback: "a")
-    
+
     # The sanitized result should not exceed 255 bytes
-    assert byte_size(sanitized) <= 255, 
+    assert byte_size(sanitized) <= 255,
       "Expected byte size <= 255, got #{byte_size(sanitized)}"
-    
+
     # Sanitizing the result again should produce the same result (idempotent)
     sanitized_again = Zarex.sanitize(sanitized, filename_fallback: "a")
     assert sanitized == sanitized_again,
